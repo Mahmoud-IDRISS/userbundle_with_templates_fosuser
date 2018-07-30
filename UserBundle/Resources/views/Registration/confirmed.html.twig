@@ -1,0 +1,16 @@
+{% extends "@User/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+<br>
+<div class="text-center danger">
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if targetUrl %}
+    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+    <br>
+    <p><a href="{{path('homepage')}}">Volver al inicio</a></p>
+
+</div>    
+{% endblock content %}

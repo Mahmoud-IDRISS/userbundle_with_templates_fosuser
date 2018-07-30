@@ -1,0 +1,34 @@
+
+{% extends "@User/layout.html.twig" %}
+
+{% block sign_title %} Registro{% endblock %}
+
+{% block content %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+<div class="field_w3ls">
+    <div class="field-group">
+    {{ form_widget(form.username, {'attr': {'placeholder' : 'form.username'}}) }}
+    </div>
+    <div class="field-group">
+    {{ form_widget(form.email, {'attr': {'placeholder' : 'form.email'}}) }}
+    </div>
+    <div class="field-group">
+    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder' : 'form.password'}}) }}
+    </div>
+    <div class="field-group">
+    {{ form_widget(form.plainPassword.second, {'attr': {'placeholder' : 'form.password_confirmation'}}) }}
+    </div>
+</div>
+
+<div class="wthree-field">
+        <input id="saveForm" name="saveForm" type="submit" value="Registrar" />
+</div>    
+{{ form_end(form) }}
+
+
+
+{% endblock %}

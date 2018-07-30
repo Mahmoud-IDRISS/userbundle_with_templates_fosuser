@@ -1,0 +1,46 @@
+{% extends "@User/layout.html.twig" %}
+
+{% block sign_title %}Login{% endblock %}
+{% block content %}
+
+    {% trans_default_domain 'FOSUserBundle' %}
+
+        {% if error %}
+            <div class="text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}                    
+            <div class="field_w3ls">
+                <div class="field-group">
+                    <input name="_username" id="username" type="text" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required>
+                </div>
+                <div class="field-group">
+                    <input id="password" type="password" class="form-control" name="_password" value="" placeholder="{{ 'security.login.password'|trans }}">
+                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>
+            </div>
+            {#
+            <input type="hidden" name="_target_path" value="{{path('homepage')}}" />
+            #}
+            <div class="wthree-field">
+                <input id="saveForm" name="saveForm" type="submit" value="Login" />
+            </div>
+            <ul class="list-login">
+                <li class="switch-agileits">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                        keep me signed in
+                    </label>
+                </li>
+                <li>
+                    <a href="{{path('fos_user_resetting_request')}}" class="text-right">forgot password?</a>
+                </li>
+                <li class="clearfix"></li>
+            </ul>
+        </form>
+
+{% endblock %}
